@@ -1,2351 +1,3088 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0",
-        "title": "NSO Swagger API Requests",
-        "description": "This only covers a sub-set of the RESTCONF Northbound API, since auto-generated swagger from the application is 200,000 lines of documentation.\n\nCreated using https://github.com/NSO-developer/nso-vagrant as a localhost NSO testing environment.",
-        "contact": {}
+  "openapi": "3.0.0",
+  "info": {
+    "title": "NSO Swagger API Requests",
+    "description": "This only covers a sub-set of the RESTCONF Northbound API, since auto-generated swagger from the application is 200,000 lines of documentation.\n\nCreated using https://github.com/NSO-developer/nso-vagrant as a localhost NSO testing environment.",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://127.0.0.1:8009/restconf",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/data/tailf-ncs:devices/device": {
+      "get": {
+        "tags": [
+          "View Device Config"
+        ],
+        "summary": "All Devices in Device List: Show Running-config Devices Device",
+        "description": "Note: This can be a very large payload, since it is sending the parsed running config of every single device in the device list, and the NSO application configuration.",
+        "operationId": "AllDevicesinDeviceList:ShowRunning-configDevicesDevice",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
     },
-    "host": "10.10.20.49:443",
-    "basePath": "/restconf",
-    "securityDefinitions": {
-        "auth": {
-            "type": "basic"
-        }
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}": {
+      "get": {
+        "tags": [
+          "View Device Config"
+        ],
+        "summary": "Single Device Config - Show devices device DEVICENAME",
+        "operationId": "SingleDeviceConfig-ShowdevicesdeviceDEVICENAME",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Adding / Removing a Device"
+        ],
+        "summary": "Delete a device from CDB Device List",
+        "operationId": "DeleteadevicefromCDBDeviceList",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
     },
-    "schemes": [],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
-    "paths": {
-        "/data/tailf-ncs:devices/device": {
-            "get": {
-                "description": "Note: This can be a very large payload, since it is sending the parsed running config of every single device in the device list, and the NSO application configuration.",
-                "summary": "All Devices in Device List: Show Running-config Devices Device",
-                "tags": [
-                    "View Device Config"
-                ],
-                "operationId": "AllDevicesinDeviceList:ShowRunning-configDevicesDevice",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/platform": {
+      "get": {
+        "tags": [
+          "View Device Config"
+        ],
+        "summary": "Single Device HW / SW Platform Info",
+        "operationId": "SingleDeviceHW/SWPlatformInfo",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
             }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
         },
-        "/data/tailf-ncs:devices/device=dist-rtr01": {
-            "get": {
-                "summary": "Single Device Config - Show devices device DEVICENAME",
-                "tags": [
-                    "View Device Config"
-                ],
-                "operationId": "SingleDeviceConfig-ShowdevicesdeviceDEVICENAME",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete a device from CDB Device List",
-                "tags": [
-                    "Adding / Removing a Device"
-                ],
-                "operationId": "DeleteadevicefromCDBDeviceList",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/platform": {
-            "get": {
-                "summary": "Single Device HW / SW Platform Info",
-                "tags": [
-                    "View Device Config"
-                ],
-                "operationId": "SingleDeviceHW/SWPlatformInfo",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface": {
-            "get": {
-                "summary": "show interfaces",
-                "tags": [
-                    "View Device Config"
-                ],
-                "operationId": "showinterfaces",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            },
-            "post": {
-                "description": "This is using an example for an IOS interface, with the configuration in the payload, but could be any config. The key thing is having the query params ?dry-run=native so NSO knows to not commit it and to respond back with the dry-run data in CLI format. Postman has the query param in the headers tab.",
-                "summary": "Commit Dry-run outformat native",
-                "tags": [
-                    "Commit Dry-Run and Rollbacks"
-                ],
-                "operationId": "CommitDry-runoutformatnative",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "dry-run",
-                        "in": "query",
-                        "required": true,
-                        "type": "string",
-                        "description": "uncheck to actually commit"
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/Loopback"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/GigabitEthernet=4": {
-            "get": {
-                "summary": "show interface Gig 4 config",
-                "tags": [
-                    "View Device Config"
-                ],
-                "operationId": "showinterfaceGig4config",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices": {
-            "post": {
-                "description": "Update the Payload with correct info. Sample XML can be used from Get on existing device or using commit dry run on CLI. Device names, NED-ID, Address and Ports will likely be different depending on your environment.",
-                "summary": "Step 0. Create a Device in the CDB",
-                "tags": [
-                    "Adding / Removing a Device"
-                ],
-                "operationId": "Step0.CreateaDeviceintheCDB",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/device"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            },
-            "patch": {
-                "description": "Groups are useful for organizing your devices in a way\nthat makes sense to you.\n\nDevices can be a member of more than one group,\nand device groups can be nested.\n\nCLI Equivalent\n\ndevices device-group campus-devices device-name [ ios0 nx0 ]\ntop\ndevices device-group backbone-devices device-name [ iosxr0 asa0 ]\ntop\ndevices device-group parent-group-all-devices device-group [ campus-devices backbone-devices ]\ncommit dry-run\ncommit dry-run outformat xml\ntop",
-                "summary": "Configure Device Groups",
-                "tags": [
-                    "NSO Device Groups"
-                ],
-                "operationId": "ConfigureDeviceGroups",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/devices"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/ssh/fetch-host-keys": {
-            "post": {
-                "description": "Since the sandbox is using telnet, we won't need to fetch SSH host keys, but this call is how you would do it if you were using SSH\n\ndeveloper@ncs(config-device-dist-rtr01)# ssh fetch-host-keys\nresult not-available\ninfo Not available for telnet\nis the error given",
-                "summary": "(not needed on sandbox telent) Step 1. SSH Fetch-Host-Keys Device",
-                "tags": [
-                    "Adding / Removing a Device"
-                ],
-                "operationId": "(notneededonsandboxtelent)Step1.SSHFetch-Host-KeysDevice",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/sync-from": {
-            "post": {
-                "summary": "Step 2. Sync-from Device",
-                "tags": [
-                    "Adding / Removing a Device"
-                ],
-                "operationId": "Step2.Sync-fromDevice",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device-group": {
-            "get": {
-                "summary": "List Device Groups",
-                "tags": [
-                    "NSO Device Groups"
-                ],
-                "operationId": "ListDeviceGroups",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device-group=IOS-DEVICES": {
-            "get": {
-                "summary": "List Device Single Device Group Details",
-                "tags": [
-                    "NSO Device Groups"
-                ],
-                "operationId": "ListDeviceSingleDeviceGroupDetails",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/GigabitEthernet=4/ip/address": {
-            "delete": {
-                "summary": "Commit-Dry Run Remove IP address from interface",
-                "tags": [
-                    "Commit Dry-Run and Rollbacks"
-                ],
-                "operationId": "Commit-DryRunRemoveIPaddressfrominterface",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "dry-run",
-                        "in": "query",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/Loopback=1337/ip": {
-            "patch": {
-                "summary": "2. Edit New Loopback IP Address",
-                "tags": [
-                    "Device Config Management"
-                ],
-                "operationId": "2.EditNewLoopbackIPAddress",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/ip"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/Loopback=1337/ip/address": {
-            "delete": {
-                "summary": "3. Remove IP Address From Interface",
-                "tags": [
-                    "Device Config Management"
-                ],
-                "operationId": "3.RemoveIPAddressFromInterface",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/Loopback=1337": {
-            "delete": {
-                "summary": "4. Delete new Loopback",
-                "tags": [
-                    "Device Config Management"
-                ],
-                "operationId": "4.DeletenewLoopback",
-                "deprecated": false,
-                "produces": [
-                    "application/yang-data+json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "415": {
-                        "description": "Unsupported Media Type",
-                        "schema": {
-                            "$ref": "#/definitions/Failure%3Abadcontent-type1"
-                        },
-                        "examples": {
-                            "application/yang-data+json": {
-                                "errors": {
-                                    "error": [
-                                        {
-                                            "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
-                                            "error-tag": "malformed-message",
-                                            "error-type": "application"
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        "headers": {
-                            "Date": {
-                                "type": "string",
-                                "default": "Mon, 14 Sep 2020 13:35:47 GMT"
-                            },
-                            "Cache-Control": {
-                                "type": "string",
-                                "default": "private, no-cache, must-revalidate, proxy-revalidate"
-                            },
-                            "Content-Length": {
-                                "type": "string",
-                                "default": "281"
-                            },
-                            "Pragma": {
-                                "type": "string",
-                                "default": "no-cache"
-                            },
-                            "Content-Security-Policy": {
-                                "type": "string",
-                                "default": "default-src 'self'; block-all-mixed-content; base-uri 'self'; frame-ancestors 'none';"
-                            },
-                            "Strict-Transport-Security": {
-                                "type": "string",
-                                "default": "max-age=15552000; includeSubDomains"
-                            },
-                            "X-Content-Type-Options": {
-                                "type": "string",
-                                "default": "nosniff"
-                            },
-                            "X-Frame-Options": {
-                                "type": "string",
-                                "default": "DENY"
-                            },
-                            "X-XSS-Protection": {
-                                "type": "string",
-                                "default": "1; mode=block"
-                            }
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "headers": {
-                            "Location": {
-                                "type": "string",
-                                "default": "https://10.10.20.49/restconf/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/Loopback=42518"
-                            },
-                            "Date": {
-                                "type": "string",
-                                "default": "Mon, 14 Sep 2020 13:36:12 GMT"
-                            },
-                            "Last-Modified": {
-                                "type": "string",
-                                "default": "Mon, 14 Sep 2020 13:36:12 GMT"
-                            },
-                            "Cache-Control": {
-                                "type": "string",
-                                "default": "private, no-cache, must-revalidate, proxy-revalidate"
-                            },
-                            "Etag": {
-                                "type": "string",
-                                "default": "\"1600-90572-167270\""
-                            },
-                            "Content-Length": {
-                                "type": "string",
-                                "default": "0"
-                            },
-                            "Pragma": {
-                                "type": "string",
-                                "default": "no-cache"
-                            },
-                            "Content-Security-Policy": {
-                                "type": "string",
-                                "default": "default-src 'self'; block-all-mixed-content; base-uri 'self'; frame-ancestors 'none';"
-                            },
-                            "Strict-Transport-Security": {
-                                "type": "string",
-                                "default": "max-age=15552000; includeSubDomains"
-                            },
-                            "X-Content-Type-Options": {
-                                "type": "string",
-                                "default": "nosniff"
-                            },
-                            "X-Frame-Options": {
-                                "type": "string",
-                                "default": "DENY"
-                            },
-                            "X-XSS-Protection": {
-                                "type": "string",
-                                "default": "1; mode=block"
-                            }
-                        }
-                    },
-                    "409": {
-                        "description": "Conflict",
-                        "schema": {
-                            "$ref": "#/definitions/Failure%3Aalreadyexists1"
-                        },
-                        "examples": {
-                            "application/yang-data+json": {
-                                "errors": {
-                                    "error": [
-                                        {
-                                            "error-message": "object already exists: /ncs:devices/ncs:device[ncs:name='dist-rtr01']/ncs:config/ios:interface/ios:Loopback[ios:name='42518']",
-                                            "error-path": "/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface",
-                                            "error-tag": "data-exists",
-                                            "error-type": "application"
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        "headers": {
-                            "Date": {
-                                "type": "string",
-                                "default": "Mon, 14 Sep 2020 13:41:59 GMT"
-                            },
-                            "Cache-Control": {
-                                "type": "string",
-                                "default": "private, no-cache, must-revalidate, proxy-revalidate"
-                            },
-                            "Content-Length": {
-                                "type": "string",
-                                "default": "384"
-                            },
-                            "Pragma": {
-                                "type": "string",
-                                "default": "no-cache"
-                            },
-                            "Content-Security-Policy": {
-                                "type": "string",
-                                "default": "default-src 'self'; block-all-mixed-content; base-uri 'self'; frame-ancestors 'none';"
-                            },
-                            "Strict-Transport-Security": {
-                                "type": "string",
-                                "default": "max-age=15552000; includeSubDomains"
-                            },
-                            "X-Content-Type-Options": {
-                                "type": "string",
-                                "default": "nosniff"
-                            },
-                            "X-Frame-Options": {
-                                "type": "string",
-                                "default": "DENY"
-                            },
-                            "X-XSS-Protection": {
-                                "type": "string",
-                                "default": "1; mode=block"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config": {
-            "patch": {
-                "summary": "5. Add SNMP Community String",
-                "tags": [
-                    "Device Config Management"
-                ],
-                "operationId": "5.AddSNMPCommunityString",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/config"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:snmp-server": {
-            "delete": {
-                "summary": "6. Remove SNMP Community String from Device",
-                "tags": [
-                    "Device Config Management"
-                ],
-                "operationId": "6.RemoveSNMPCommunityStringfromDevice",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/apply-template": {
-            "post": {
-                "summary": "2. Apply DNS Server Device Template",
-                "tags": [
-                    "Device Config Templates"
-                ],
-                "operationId": "2.ApplyDNSServerDeviceTemplate",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/input"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/live-status": {
-            "get": {
-                "summary": "View NSO Parsed Live Status",
-                "tags": [
-                    "Operational Data"
-                ],
-                "operationId": "ViewNSOParsedLiveStatus",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/live-status/tailf-ned-cisco-ios-stats:arp": {
-            "get": {
-                "summary": "View Arp Data",
-                "tags": [
-                    "Operational Data"
-                ],
-                "operationId": "ViewArpData",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:devices/device=dist-rtr01/live-status/tailf-ned-cisco-ios-stats:exec/any": {
-            "post": {
-                "description": "any enable level command can be sent",
-                "summary": "Send any Command to Device: Show IP Interface Brief",
-                "tags": [
-                    "Operational Data"
-                ],
-                "operationId": "SendanyCommandtoDevice:ShowIPInterfaceBrief",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/SendanyCommandtoDevice%3AShowIPInterfaceBriefRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:compliance": {
-            "patch": {
-                "description": "This compliance report uses the device config template SET-DNS-SERVER to see if the device has a DNS server per OS type. \nIt assumes you have the template in the CDB and have device groups set. The prod instance does not have these set by default.",
-                "summary": "Configure DNS Server Compliance Report",
-                "tags": [
-                    "Config Compliance Reporting"
-                ],
-                "operationId": "ConfigureDNSServerComplianceReport",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/compliance"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/tailf-ncs:compliance/reports/report=DNS_COMPLIANCE_REPORT/run": {
-            "post": {
-                "description": "for a system install the report will be created here:\n/var/opt/ncs/state/compliance-reports",
-                "summary": "Run Compliance Report",
-                "tags": [
-                    "Config Compliance Reporting"
-                ],
-                "operationId": "RunComplianceReport",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/input2"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/svi_verify_example:svi_verify_example": {
-            "get": {
-                "description": "Note: this will only have data if service instances already exist.\nShows all service instances. In this case we have just one. \nCLI version:\nadmin@ncs# show running-config simple-sample-snmp-server-service\nsimple-sample-snmp-server-service first_service_instance\n device [ ios0 ]\n dummy  10.0.0.0",
-                "summary": "Get List of Service Instances for a Service",
-                "tags": [
-                    "NSO Services: SVI Verify Example"
-                ],
-                "operationId": "GetListofServiceInstancesforaService",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            },
-            "patch": {
-                "description": "Creates a service and applies the corresponding template. \n\nto add a package on the sandbox system install do the following:\n\ncd /var/opt/ncs/packages\nncs-make-package --service-skeleton template snmp-servers\nvi snmp-servers/src/yang/snmp-servers.yang\n\n** add type string / remove type ip address **\nhttps://github.com/jabelk/snmp-servers/blob/main/src/yang/snmp-servers.yang#L31\n\ncd snmp-servers/src/\nmake\ncd ..\ncd templates/\nvi snmp-servers-template.xml\n\n** add in the templates **\n\nhttps://github.com/jabelk/snmp-servers/blob/main/templates/snmp-servers-template.xml#L19\n\nlog into NSO\nncs_cli -C\npackages reload",
-                "summary": "Create Service Instance for Single Device",
-                "tags": [
-                    "NSO Services: SVI Verify Example"
-                ],
-                "operationId": "CreateServiceInstanceforSingleDevice",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/CreateServiceInstanceforSingleDeviceRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data/svi_verify_example:svi_verify_example=first-instance": {
-            "get": {
-                "description": "Note: this will only have data if service instances already exist.\nCLI version to do the same:\nadmin@ncs# show running-config simple-sample-snmp-server-service first_service_instance",
-                "summary": "Get Service Info For Single Service Instance",
-                "tags": [
-                    "NSO Services: SVI Verify Example"
-                ],
-                "operationId": "GetServiceInfoForSingleServiceInstance",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            },
-            "patch": {
-                "description": "Updating the VLAN Name and Number",
-                "summary": "Update an Existing Service Instance",
-                "tags": [
-                    "NSO Services: SVI Verify Example"
-                ],
-                "operationId": "UpdateanExistingServiceInstance",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Body",
-                        "in": "body",
-                        "required": true,
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/UpdateanExistingServiceInstanceRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            },
-            "delete": {
-                "description": "This will remove any configuration template based on the inputs stored in the service. \nCLI way of doing the same thing:\nno simple-sample-snmp-server-service first_service_instance",
-                "summary": "Remove Device from Service",
-                "tags": [
-                    "NSO Services: SVI Verify Example"
-                ],
-                "operationId": "RemoveDevicefromService",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Content-Type",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    },
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        },
-        "/data": {
-            "get": {
-                "summary": "Root Level NSO JSON Returned",
-                "tags": [
-                    "NSO Root of the App Hierarchy Level Queries"
-                ],
-                "operationId": "RootLevelNSOJSONReturned",
-                "deprecated": false,
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "Accept",
-                        "in": "header",
-                        "required": true,
-                        "type": "string",
-                        "description": ""
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "headers": {}
-                    }
-                }
-            }
-        }
+        "deprecated": false
+      }
     },
-    "definitions": {
-        "device": {
-            "title": "device",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "address": {
-                    "xml": {
-                        "name": "address",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "authgroup": {
-                    "xml": {
-                        "name": "authgroup",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "device-type": {
-                    "$ref": "#/definitions/device-type"
-                },
-                "state": {
-                    "$ref": "#/definitions/state"
-                }
-            },
-            "required": [
-                "name",
-                "address",
-                "authgroup",
-                "device-type",
-                "state"
-            ]
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:interface": {
+      "get": {
+        "tags": [
+          "View Device Config"
+        ],
+        "summary": "show interfaces",
+        "operationId": "showinterfaces",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
         },
-        "device-type": {
-            "title": "device-type",
-            "type": "object",
-            "properties": {
-                "cli": {
-                    "$ref": "#/definitions/cli"
-                }
-            },
-            "required": [
-                "cli"
-            ]
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Commit Dry-Run and Rollbacks"
+        ],
+        "summary": "Commit Dry-run outformat native",
+        "description": "This is using an example for an IOS interface, with the configuration in the payload, but could be any config. The key thing is having the query params ?dry-run=native so NSO knows to not commit it and to respond back with the dry-run data in CLI format. Postman has the query param in the headers tab.",
+        "operationId": "CommitDry-runoutformatnative",
+        "parameters": [
+          {
+            "name": "dry-run",
+            "in": "query",
+            "description": "uncheck to actually commit",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "native"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Loopback"
+              },
+              "example": "<Loopback>\r\n  <name>1337</name>\r\n  <description>RESTCONF CREATED LOOPBACK</description>\r\n  <ip>\r\n    <address>\r\n      <primary>\r\n        <address>10.20.50.4</address>\r\n        <mask>255.255.255.255</mask>\r\n      </primary>\r\n    </address>\r\n  </ip>\r\n</Loopback>"
+            }
+          },
+          "required": true
         },
-        "cli": {
-            "title": "cli",
-            "type": "object",
-            "properties": {
-                "ned-id": {
-                    "xml": {
-                        "name": "ned-id",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:interface/GigabitEthernet=4": {
+      "get": {
+        "tags": [
+          "View Device Config"
+        ],
+        "summary": "show interface Gig 4 config",
+        "operationId": "showinterfaceGig4config",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices": {
+      "post": {
+        "tags": [
+          "Adding / Removing a Device"
+        ],
+        "summary": "Step 0. Create a Device in the CDB",
+        "description": "Update the Payload with correct info. Sample XML can be used from Get on existing device or using commit dry run on CLI. Device names, NED-ID, Address and Ports will likely be different depending on your environment.",
+        "operationId": "Step0.CreateaDeviceintheCDB",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/device"
+              },
+              "example": "<device>\r\n  <name>dist-rtr01</name>\r\n  <address>10.10.20.175</address>\r\n  <authgroup>labadmin</authgroup>\r\n  <device-type>\r\n    <cli>\r\n      <ned-id>cisco-ios-cli-6.44:cisco-ios-cli-6.44</ned-id>\r\n      <protocol>telnet</protocol>\r\n    </cli>\r\n  </device-type>\r\n  <state>\r\n    <admin-state>unlocked</admin-state>\r\n  </state>\r\n</device>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "NSO Device Groups"
+        ],
+        "summary": "Configure Device Groups",
+        "description": "Groups are useful for organizing your devices in a way\nthat makes sense to you.\n\nDevices can be a member of more than one group,\nand device groups can be nested.\n\nCLI Equivalent\n\ndevices device-group campus-devices device-name [ ios0 nx0 ]\ntop\ndevices device-group backbone-devices device-name [ iosxr0 asa0 ]\ntop\ndevices device-group parent-group-all-devices device-group [ campus-devices backbone-devices ]\ncommit dry-run\ncommit dry-run outformat xml\ntop",
+        "operationId": "ConfigureDeviceGroups",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/devices"
+              },
+              "example": "<devices>\r\n  <device-group>\r\n    <name>ALL</name>\r\n    <device-group>ASA-DEVICES</device-group>\r\n    <device-group>IOS-DEVICES</device-group>\r\n    <device-group>NXOS-DEVICES</device-group>\r\n    <device-group>XR-DEVICES</device-group>\r\n  </device-group>\r\n  <device-group>\r\n    <name>ASA-DEVICES</name>\r\n    <device-name>edge-firewall01</device-name>\r\n  </device-group>\r\n  <device-group>\r\n    <name>IOS-DEVICES</name>\r\n    <device-name>[\"dist-rtr01\",\"dist-rtr02\",\"internet-rtr01\"]</device-name>\r\n  </device-group>\r\n  <device-group>\r\n    <name>NXOS-DEVICES</name>\r\n    <device-name>[\"dist-sw01\",\"dist-sw02\"]</device-name>\r\n  </device-group>\r\n  <device-group>\r\n    <name>XR-DEVICES</name>\r\n    <device-name>[\"core-rtr01\",\"core-rtr02\"]</device-name>\r\n  </device-group>\r\n</devices>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/ssh/fetch-host-keys": {
+      "post": {
+        "tags": [
+          "Adding / Removing a Device"
+        ],
+        "summary": "(not needed on sandbox telent) Step 1. SSH Fetch-Host-Keys Device",
+        "description": "Since the sandbox is using telnet, we won't need to fetch SSH host keys, but this call is how you would do it if you were using SSH\n\ndeveloper@ncs(config-device-dist-rtr01)# ssh fetch-host-keys\nresult not-available\ninfo Not available for telnet\nis the error given",
+        "operationId": "(notneededonsandboxtelent)Step1.SSHFetch-Host-KeysDevice",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/sync-from": {
+      "post": {
+        "tags": [
+          "Adding / Removing a Device"
+        ],
+        "summary": "Step 2. Sync-from Device",
+        "operationId": "Step2.Sync-fromDevice",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device-group": {
+      "get": {
+        "tags": [
+          "NSO Device Groups"
+        ],
+        "summary": "List Device Groups",
+        "operationId": "ListDeviceGroups",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device-group=IOS-DEVICES": {
+      "get": {
+        "tags": [
+          "NSO Device Groups"
+        ],
+        "summary": "List Device Single Device Group Details",
+        "operationId": "ListDeviceSingleDeviceGroupDetails",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:interface/GigabitEthernet=4/ip/address": {
+      "delete": {
+        "tags": [
+          "Commit Dry-Run and Rollbacks"
+        ],
+        "summary": "Commit-Dry Run Remove IP address from interface",
+        "operationId": "Commit-DryRunRemoveIPaddressfrominterface",
+        "parameters": [
+          {
+            "name": "dry-run",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "native"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:interface/Loopback=1337/ip": {
+      "patch": {
+        "tags": [
+          "Device Config Management"
+        ],
+        "summary": "2. Edit New Loopback IP Address",
+        "operationId": "2.EditNewLoopbackIPAddress",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ip"
+              },
+              "example": "<ip>\r\n  <address>\r\n    <primary>\r\n      <address>10.0.0.5</address>\r\n      <mask>255.255.255.255</mask>\r\n    </primary>\r\n  </address>\r\n</ip>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:interface/Loopback=1337/ip/address": {
+      "delete": {
+        "tags": [
+          "Device Config Management"
+        ],
+        "summary": "3. Remove IP Address From Interface",
+        "operationId": "3.RemoveIPAddressFromInterface",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:interface/Loopback=1337": {
+      "delete": {
+        "tags": [
+          "Device Config Management"
+        ],
+        "summary": "4. Delete new Loopback",
+        "operationId": "4.DeletenewLoopback",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "415": {
+            "description": "Unsupported Media Type",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
                     },
-                    "type": "string"
+                    "example": "Mon, 14 Sep 2020 13:35:47 GMT"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "private, no-cache, must-revalidate, proxy-revalidate"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "281"
+                  }
+                }
+              },
+              "Pragma": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "no-cache"
+                  }
+                }
+              },
+              "Content-Security-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "default-src 'self'; block-all-mixed-content; base-uri 'self'; frame-ancestors 'none';"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "X-Content-Type-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "X-Frame-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DENY"
+                  }
+                }
+              },
+              "X-XSS-Protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/yang-data+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Failure%3Abadcontent-type1"
                 },
-                "protocol": {
-                    "xml": {
-                        "name": "protocol",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
+                "example": {
+                  "errors": {
+                    "error": [
+                      {
+                        "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
+                        "error-tag": "malformed-message",
+                        "error-type": "application"
+                      }
+                    ]
+                  }
                 }
-            },
-            "required": [
-                "ned-id",
-                "protocol"
-            ]
-        },
-        "state": {
-            "title": "state",
-            "type": "object",
-            "properties": {
-                "admin-state": {
-                    "xml": {
-                        "name": "admin-state",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Location": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
                     },
-                    "type": "string"
+                    "example": "https://10.10.20.49/restconf/data/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface/Loopback=42518"
+                  }
                 }
-            },
-            "required": [
-                "admin-state"
-            ]
-        },
-        "devices": {
-            "title": "devices",
-            "type": "object",
-            "properties": {
-                "device-group": {
-                    "xml": {
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
                     },
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/device-group"
-                    }
+                    "example": "Mon, 14 Sep 2020 13:36:12 GMT"
+                  }
                 }
-            },
-            "required": [
-                "device-group"
-            ]
-        },
-        "device-group": {
-            "title": "device-group",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
+              },
+              "Last-Modified": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
                     },
-                    "type": "string"
+                    "example": "Mon, 14 Sep 2020 13:36:12 GMT"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "private, no-cache, must-revalidate, proxy-revalidate"
+                  }
+                }
+              },
+              "Etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "\"1600-90572-167270\""
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "0"
+                  }
+                }
+              },
+              "Pragma": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "no-cache"
+                  }
+                }
+              },
+              "Content-Security-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "default-src 'self'; block-all-mixed-content; base-uri 'self'; frame-ancestors 'none';"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "X-Content-Type-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "X-Frame-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DENY"
+                  }
+                }
+              },
+              "X-XSS-Protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              }
+            },
+            "content": {}
+          },
+          "409": {
+            "description": "Conflict",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Mon, 14 Sep 2020 13:41:59 GMT"
+                  }
+                }
+              },
+              "Cache-Control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "private, no-cache, must-revalidate, proxy-revalidate"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "384"
+                  }
+                }
+              },
+              "Pragma": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "no-cache"
+                  }
+                }
+              },
+              "Content-Security-Policy": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "default-src 'self'; block-all-mixed-content; base-uri 'self'; frame-ancestors 'none';"
+                  }
+                }
+              },
+              "Strict-Transport-Security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "X-Content-Type-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "X-Frame-Options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DENY"
+                  }
+                }
+              },
+              "X-XSS-Protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/yang-data+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Failure%3Aalreadyexists1"
                 },
-                "device-group": {
-                    "xml": {
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "array",
-                    "items": {
-                        "xml": {
-                            "name": "device-group",
-                            "attribute": false,
-                            "wrapped": false
-                        },
-                        "type": "string"
-                    }
-                },
-                "device-name": {
-                    "xml": {
-                        "name": "device-name",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ]
-        },
-        "Loopback": {
-            "title": "Loopback",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "description": {
-                    "xml": {
-                        "name": "description",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "ip": {
-                    "$ref": "#/definitions/ip"
-                }
-            },
-            "required": [
-                "name",
-                "description",
-                "ip"
-            ]
-        },
-        "ip": {
-            "title": "ip",
-            "type": "object",
-            "properties": {
-                "address": {
-                    "$ref": "#/definitions/address"
-                }
-            },
-            "required": [
-                "address"
-            ]
-        },
-        "address": {
-            "title": "address",
-            "type": "object",
-            "properties": {
-                "primary": {
-                    "$ref": "#/definitions/primary"
-                }
-            },
-            "required": [
-                "primary"
-            ]
-        },
-        "primary": {
-            "title": "primary",
-            "type": "object",
-            "properties": {
-                "address": {
-                    "xml": {
-                        "name": "address",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "mask": {
-                    "xml": {
-                        "name": "mask",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "address",
-                "mask"
-            ]
-        },
-        "Errors": {
-            "title": "Errors",
-            "example": {
-                "error": [
-                    {
+                "example": {
+                  "errors": {
+                    "error": [
+                      {
                         "error-message": "object already exists: /ncs:devices/ncs:device[ncs:name='dist-rtr01']/ncs:config/ios:interface/ios:Loopback[ios:name='42518']",
                         "error-path": "/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface",
                         "error-tag": "data-exists",
                         "error-type": "application"
-                    }
-                ]
-            },
-            "type": "object",
-            "properties": {
-                "error": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Error"
-                    }
+                      }
+                    ]
+                  }
                 }
-            },
-            "required": [
-                "error"
-            ]
+              }
+            }
+          }
         },
-        "Error": {
-            "title": "Error",
-            "example": {
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config": {
+      "patch": {
+        "tags": [
+          "Device Config Management"
+        ],
+        "summary": "5. Add SNMP Community String",
+        "operationId": "5.AddSNMPCommunityString",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/config"
+              },
+              "example": "<config>\r\n  <snmp-server>\r\n    <community>\r\n      <name>NSO-STRING</name>\r\n    </community>\r\n  </snmp-server>\r\n</config>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/config/tailf-ned-cisco-ios:snmp-server": {
+      "delete": {
+        "tags": [
+          "Device Config Management"
+        ],
+        "summary": "6. Remove SNMP Community String from Device",
+        "operationId": "6.RemoveSNMPCommunityStringfromDevice",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/apply-template": {
+      "post": {
+        "tags": [
+          "Device Config Templates"
+        ],
+        "summary": "2. Apply DNS Server Device Template",
+        "operationId": "2.ApplyDNSServerDeviceTemplate",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/input"
+              },
+              "example": "<input>\r\n  <template-name>SET-DNS-SERVER</template-name>\r\n</input>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/live-status": {
+      "get": {
+        "tags": [
+          "Operational Data"
+        ],
+        "summary": "View NSO Parsed Live Status",
+        "operationId": "ViewNSOParsedLiveStatus",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/live-status/tailf-ned-cisco-ios-stats:arp": {
+      "get": {
+        "tags": [
+          "Operational Data"
+        ],
+        "summary": "View Arp Data",
+        "operationId": "ViewArpData",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:devices/device={SAMPLE_IOS_DEVICE}/live-status/tailf-ned-cisco-ios-stats:exec/any": {
+      "post": {
+        "tags": [
+          "Operational Data"
+        ],
+        "summary": "Send any Command to Device: Show IP Interface Brief",
+        "description": "any enable level command can be sent",
+        "operationId": "SendanyCommandtoDevice:ShowIPInterfaceBrief",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          },
+          {
+            "name": "SAMPLE_IOS_DEVICE",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/yang-data+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendanyCommandtoDevice%3AShowIPInterfaceBriefRequest"
+              },
+              "example": {
+                "input": {
+                  "args": "show ip interface brief"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:compliance": {
+      "patch": {
+        "tags": [
+          "Config Compliance Reporting"
+        ],
+        "summary": "Configure DNS Server Compliance Report",
+        "description": "This compliance report uses the device config template SET-DNS-SERVER to see if the device has a DNS server per OS type. \nIt assumes you have the template in the CDB and have device groups set. The prod instance does not have these set by default.",
+        "operationId": "ConfigureDNSServerComplianceReport",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/compliance"
+              },
+              "example": "<compliance>\r\n  <reports>\r\n    <report>\r\n      <name>DNS_COMPLIANCE_REPORT</name>\r\n      <compare-template>\r\n        <template-name>SET-DNS-SERVER</template-name>\r\n        <device-group>ALL</device-group>\r\n      </compare-template>\r\n    </report>\r\n  </reports>\r\n</compliance>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/tailf-ncs:compliance/reports/report=DNS_COMPLIANCE_REPORT/run": {
+      "post": {
+        "tags": [
+          "Config Compliance Reporting"
+        ],
+        "summary": "Run Compliance Report",
+        "description": "for a system install the report will be created here:\n/var/opt/ncs/state/compliance-reports",
+        "operationId": "RunComplianceReport",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/input2"
+              },
+              "example": "<input>\r\n  <outformat>html</outformat>\r\n</input>"
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/svi_verify_example:svi_verify_example": {
+      "get": {
+        "tags": [
+          "NSO Services: SVI Verify Example"
+        ],
+        "summary": "Get List of Service Instances for a Service",
+        "description": "Note: this will only have data if service instances already exist.\nShows all service instances. In this case we have just one. \nCLI version:\nadmin@ncs# show running-config simple-sample-snmp-server-service\nsimple-sample-snmp-server-service first_service_instance\n device [ ios0 ]\n dummy  10.0.0.0",
+        "operationId": "GetListofServiceInstancesforaService",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "NSO Services: SVI Verify Example"
+        ],
+        "summary": "Create Service Instance for Single Device",
+        "description": "Creates a service and applies the corresponding template. \n\nto add a package on the sandbox system install do the following:\n\ncd /var/opt/ncs/packages\nncs-make-package --service-skeleton template snmp-servers\nvi snmp-servers/src/yang/snmp-servers.yang\n\n** add type string / remove type ip address **\nhttps://github.com/jabelk/snmp-servers/blob/main/src/yang/snmp-servers.yang#L31\n\ncd snmp-servers/src/\nmake\ncd ..\ncd templates/\nvi snmp-servers-template.xml\n\n** add in the templates **\n\nhttps://github.com/jabelk/snmp-servers/blob/main/templates/snmp-servers-template.xml#L19\n\nlog into NSO\nncs_cli -C\npackages reload",
+        "operationId": "CreateServiceInstanceforSingleDevice",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/yang-data+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceInstanceforSingleDeviceRequest"
+              },
+              "example": {
+                "svi_verify_example:svi_verify_example": [
+                  {
+                    "name": "first-instance",
+                    "switches": [
+                      {
+                        "id": "first-sw",
+                        "switch-device": "dist-sw01"
+                      },
+                      {
+                        "id": "second-sw",
+                        "switch-device": "dist-sw02"
+                      }
+                    ],
+                    "firewalls": [
+                      {
+                        "id": "first-fw",
+                        "firewall-device": "edge-firewall01"
+                      }
+                    ],
+                    "vlan-id": 1337,
+                    "vlan-name": "SVI-DEMO"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data/svi_verify_example:svi_verify_example=first-instance": {
+      "get": {
+        "tags": [
+          "NSO Services: SVI Verify Example"
+        ],
+        "summary": "Get Service Info For Single Service Instance",
+        "description": "Note: this will only have data if service instances already exist.\nCLI version to do the same:\nadmin@ncs# show running-config simple-sample-snmp-server-service first_service_instance",
+        "operationId": "GetServiceInfoForSingleServiceInstance",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "NSO Services: SVI Verify Example"
+        ],
+        "summary": "Update an Existing Service Instance",
+        "description": "Updating the VLAN Name and Number",
+        "operationId": "UpdateanExistingServiceInstance",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/yang-data+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateanExistingServiceInstanceRequest"
+              },
+              "example": {
+                "svi_verify_example:svi_verify_example": [
+                  {
+                    "name": "first-instance",
+                    "switches": [
+                      {
+                        "id": "first-sw",
+                        "switch-device": "dist-sw01"
+                      },
+                      {
+                        "id": "second-sw",
+                        "switch-device": "dist-sw02"
+                      }
+                    ],
+                    "firewalls": [
+                      {
+                        "id": "first-fw",
+                        "firewall-device": "edge-firewall01"
+                      }
+                    ],
+                    "vlan-id": 1503,
+                    "vlan-name": "NEW-SVI-DEMO"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "NSO Services: SVI Verify Example"
+        ],
+        "summary": "Remove Device from Service",
+        "description": "This will remove any configuration template based on the inputs stored in the service. \nCLI way of doing the same thing:\nno simple-sample-snmp-server-service first_service_instance",
+        "operationId": "RemoveDevicefromService",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+xml"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/data": {
+      "get": {
+        "tags": [
+          "NSO Root of the App Hierarchy Level Queries"
+        ],
+        "summary": "Root Level NSO JSON Returned",
+        "operationId": "RootLevelNSOJSONReturned",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/yang-data+json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "device": {
+        "title": "device",
+        "required": [
+          "name",
+          "address",
+          "authgroup",
+          "device-type",
+          "state"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "address": {
+            "type": "string",
+            "xml": {
+              "name": "address",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "authgroup": {
+            "type": "string",
+            "xml": {
+              "name": "authgroup",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "device-type": {
+            "$ref": "#/components/schemas/device-type"
+          },
+          "state": {
+            "$ref": "#/components/schemas/state"
+          }
+        },
+        "xml": {
+          "name": "device",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "device-type": {
+        "title": "device-type",
+        "required": [
+          "cli"
+        ],
+        "type": "object",
+        "properties": {
+          "cli": {
+            "$ref": "#/components/schemas/cli"
+          }
+        },
+        "xml": {
+          "name": "device-type",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "cli": {
+        "title": "cli",
+        "required": [
+          "ned-id",
+          "protocol"
+        ],
+        "type": "object",
+        "properties": {
+          "ned-id": {
+            "type": "string",
+            "xml": {
+              "name": "ned-id",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "protocol": {
+            "type": "string",
+            "xml": {
+              "name": "protocol",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "cli",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "state": {
+        "title": "state",
+        "required": [
+          "admin-state"
+        ],
+        "type": "object",
+        "properties": {
+          "admin-state": {
+            "type": "string",
+            "xml": {
+              "name": "admin-state",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "state",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "devices": {
+        "title": "devices",
+        "required": [
+          "device-group"
+        ],
+        "type": "object",
+        "properties": {
+          "device-group": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/device-group"
+            },
+            "description": "",
+            "xml": {
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "devices",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "device-group": {
+        "title": "device-group",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "device-group": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "device-group",
+                "attribute": false,
+                "wrapped": false
+              }
+            },
+            "description": "",
+            "xml": {
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "device-name": {
+            "type": "string",
+            "xml": {
+              "name": "device-name",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "device-group",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "Loopback": {
+        "title": "Loopback",
+        "required": [
+          "name",
+          "description",
+          "ip"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "integer",
+            "format": "int32",
+            "xml": {
+              "name": "name",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "description": {
+            "type": "string",
+            "xml": {
+              "name": "description",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "ip": {
+            "$ref": "#/components/schemas/ip"
+          }
+        },
+        "xml": {
+          "name": "Loopback",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "ip": {
+        "title": "ip",
+        "required": [
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/address"
+          }
+        },
+        "xml": {
+          "name": "ip",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "address": {
+        "title": "address",
+        "required": [
+          "primary"
+        ],
+        "type": "object",
+        "properties": {
+          "primary": {
+            "$ref": "#/components/schemas/primary"
+          }
+        },
+        "xml": {
+          "name": "address",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "primary": {
+        "title": "primary",
+        "required": [
+          "address",
+          "mask"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "xml": {
+              "name": "address",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "mask": {
+            "type": "string",
+            "xml": {
+              "name": "mask",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "primary",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "Errors": {
+        "title": "Errors",
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "error": [
+            {
+              "error-message": "object already exists: /ncs:devices/ncs:device[ncs:name='dist-rtr01']/ncs:config/ios:interface/ios:Loopback[ios:name='42518']",
+              "error-path": "/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface",
+              "error-tag": "data-exists",
+              "error-type": "application"
+            }
+          ]
+        }
+      },
+      "Error": {
+        "title": "Error",
+        "required": [
+          "error-message",
+          "error-path",
+          "error-tag",
+          "error-type"
+        ],
+        "type": "object",
+        "properties": {
+          "error-message": {
+            "type": "string"
+          },
+          "error-path": {
+            "type": "string"
+          },
+          "error-tag": {
+            "type": "string"
+          },
+          "error-type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "error-message": "object already exists: /ncs:devices/ncs:device[ncs:name='dist-rtr01']/ncs:config/ios:interface/ios:Loopback[ios:name='42518']",
+          "error-path": "/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface",
+          "error-tag": "data-exists",
+          "error-type": "application"
+        }
+      },
+      "Failure:alreadyexists1": {
+        "title": "Failure:alreadyexists1",
+        "required": [
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "errors": {
+            "$ref": "#/components/schemas/Errors"
+          }
+        },
+        "example": {
+          "errors": {
+            "error": [
+              {
                 "error-message": "object already exists: /ncs:devices/ncs:device[ncs:name='dist-rtr01']/ncs:config/ios:interface/ios:Loopback[ios:name='42518']",
                 "error-path": "/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface",
                 "error-tag": "data-exists",
                 "error-type": "application"
-            },
-            "type": "object",
-            "properties": {
-                "error-message": {
-                    "type": "string"
-                },
-                "error-path": {
-                    "type": "string"
-                },
-                "error-tag": {
-                    "type": "string"
-                },
-                "error-type": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "error-message",
-                "error-path",
-                "error-tag",
-                "error-type"
+              }
             ]
+          }
+        }
+      },
+      "Errors2": {
+        "title": "Errors2",
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Error2"
+            },
+            "description": ""
+          }
         },
-        "Failure:alreadyexists1": {
-            "title": "Failure:alreadyexists1",
-            "example": {
-                "errors": {
-                    "error": [
-                        {
-                            "error-message": "object already exists: /ncs:devices/ncs:device[ncs:name='dist-rtr01']/ncs:config/ios:interface/ios:Loopback[ios:name='42518']",
-                            "error-path": "/tailf-ncs:devices/device=dist-rtr01/config/tailf-ned-cisco-ios:interface",
-                            "error-tag": "data-exists",
-                            "error-type": "application"
-                        }
-                    ]
-                }
-            },
-            "type": "object",
-            "properties": {
-                "errors": {
-                    "$ref": "#/definitions/Errors"
-                }
-            },
-            "required": [
-                "errors"
-            ]
+        "example": {
+          "error": [
+            {
+              "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
+              "error-tag": "malformed-message",
+              "error-type": "application"
+            }
+          ]
+        }
+      },
+      "Error2": {
+        "title": "Error2",
+        "required": [
+          "error-message",
+          "error-tag",
+          "error-type"
+        ],
+        "type": "object",
+        "properties": {
+          "error-message": {
+            "type": "string"
+          },
+          "error-tag": {
+            "type": "string"
+          },
+          "error-type": {
+            "type": "string"
+          }
         },
-        "Errors2": {
-            "title": "Errors2",
-            "example": {
-                "error": [
-                    {
-                        "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
-                        "error-tag": "malformed-message",
-                        "error-type": "application"
-                    }
-                ]
-            },
-            "type": "object",
-            "properties": {
-                "error": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Error2"
-                    }
-                }
-            },
-            "required": [
-                "error"
-            ]
+        "example": {
+          "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
+          "error-tag": "malformed-message",
+          "error-type": "application"
+        }
+      },
+      "Failure:badcontent-type1": {
+        "title": "Failure:badcontent-type1",
+        "required": [
+          "errors"
+        ],
+        "type": "object",
+        "properties": {
+          "errors": {
+            "$ref": "#/components/schemas/Errors2"
+          }
         },
-        "Error2": {
-            "title": "Error2",
-            "example": {
+        "example": {
+          "errors": {
+            "error": [
+              {
                 "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
                 "error-tag": "malformed-message",
                 "error-type": "application"
-            },
-            "type": "object",
-            "properties": {
-                "error-message": {
-                    "type": "string"
-                },
-                "error-tag": {
-                    "type": "string"
-                },
-                "error-type": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "error-message",
-                "error-tag",
-                "error-type"
+              }
             ]
-        },
-        "Failure:badcontent-type1": {
-            "title": "Failure:badcontent-type1",
-            "example": {
-                "errors": {
-                    "error": [
-                        {
-                            "error-message": "Unsupported media type: application/json ; Should be one of: application/yang-data+xml, application/yang-data+json.",
-                            "error-tag": "malformed-message",
-                            "error-type": "application"
-                        }
-                    ]
-                }
-            },
-            "type": "object",
-            "properties": {
-                "errors": {
-                    "$ref": "#/definitions/Errors2"
-                }
-            },
-            "required": [
-                "errors"
-            ]
-        },
-        "config": {
-            "title": "config",
-            "type": "object",
-            "properties": {
-                "snmp-server": {
-                    "$ref": "#/definitions/snmp-server"
-                }
-            },
-            "required": [
-                "snmp-server"
-            ]
-        },
-        "snmp-server": {
-            "title": "snmp-server",
-            "type": "object",
-            "properties": {
-                "community": {
-                    "$ref": "#/definitions/community"
-                }
-            },
-            "required": [
-                "community"
-            ]
-        },
-        "community": {
-            "title": "community",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "urn:ios",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ]
-        },
-        "devices1": {
-            "title": "devices1",
-            "type": "object",
-            "properties": {
-                "template": {
-                    "$ref": "#/definitions/template"
-                }
-            },
-            "required": [
-                "template"
-            ]
-        },
-        "template": {
-            "title": "template",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "ned-id": {
-                    "xml": {
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ned-id"
-                    }
-                }
-            },
-            "required": [
-                "name",
-                "ned-id"
-            ]
-        },
-        "ned-id": {
-            "title": "ned-id",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "xml": {
-                        "name": "id",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "config": {
-                    "$ref": "#/definitions/config1"
-                }
-            },
-            "required": [
-                "id",
-                "config"
-            ]
-        },
-        "config1": {
-            "title": "config1",
-            "type": "object",
-            "properties": {
-                "domain": {
-                    "$ref": "#/definitions/domain"
-                },
-                "dns": {
-                    "$ref": "#/definitions/dns"
-                },
-                "ip": {
-                    "$ref": "#/definitions/ip4"
-                }
-            }
-        },
-        "domain": {
-            "title": "domain",
-            "type": "object",
-            "properties": {
-                "name-server": {
-                    "xml": {
-                        "namespace": "http://tail-f.com/ned/cisco-ios-xr",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/name-server"
-                    }
-                }
-            },
-            "required": [
-                "name-server"
-            ]
-        },
-        "name-server": {
-            "title": "name-server",
-            "type": "object",
-            "properties": {
-                "address": {
-                    "xml": {
-                        "name": "address",
-                        "namespace": "http://tail-f.com/ned/cisco-ios-xr",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "address"
-            ]
-        },
-        "dns": {
-            "title": "dns",
-            "type": "object",
-            "properties": {
-                "domain-lookup": {
-                    "$ref": "#/definitions/domain-lookup"
-                },
-                "server-group": {
-                    "$ref": "#/definitions/server-group"
-                }
-            }
-        },
-        "domain-lookup": {
-            "title": "domain-lookup",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "http://cisco.com/ned/asa",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            }
-        },
-        "server-group": {
-            "title": "server-group",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "http://cisco.com/ned/asa",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "name-server": {
-                    "xml": {
-                        "namespace": "http://cisco.com/ned/asa",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "array",
-                    "items": {
-                        "xml": {
-                            "name": "name-server",
-                            "attribute": false,
-                            "wrapped": false
-                        },
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "ip4": {
-            "title": "ip4",
-            "type": "object",
-            "properties": {
-                "name-server": {
-                    "$ref": "#/definitions/name-server1"
-                }
-            }
-        },
-        "name-server1": {
-            "title": "name-server1",
-            "type": "object",
-            "properties": {
-                "name-server-list": {
-                    "xml": {
-                        "namespace": "urn:ios",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/name-server-list"
-                    }
-                },
-                "servers": {
-                    "xml": {
-                        "namespace": "http://tail-f.com/ned/cisco-nx",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "array",
-                    "items": {
-                        "xml": {
-                            "name": "servers",
-                            "attribute": false,
-                            "wrapped": false
-                        },
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "name-server-list": {
-            "title": "name-server-list",
-            "type": "object",
-            "properties": {
-                "address": {
-                    "xml": {
-                        "name": "address",
-                        "namespace": "urn:ios",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            }
-        },
-        "input": {
-            "title": "input",
-            "type": "object",
-            "properties": {
-                "template-name": {
-                    "xml": {
-                        "name": "template-name",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "template-name"
-            ]
-        },
-        "SendanyCommandtoDevice:ShowIPInterfaceBriefRequest": {
-            "title": "SendanyCommandtoDevice:ShowIPInterfaceBriefRequest",
-            "example": {
-                "input": {
-                    "args": "show ip interface brief"
-                }
-            },
-            "type": "object",
-            "properties": {
-                "input": {
-                    "$ref": "#/definitions/Input1"
-                }
-            },
-            "required": [
-                "input"
-            ]
-        },
-        "Input1": {
-            "title": "Input1",
-            "example": {
-                "args": "show ip interface brief"
-            },
-            "type": "object",
-            "properties": {
-                "args": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "args"
-            ]
-        },
-        "compliance": {
-            "title": "compliance",
-            "type": "object",
-            "properties": {
-                "reports": {
-                    "$ref": "#/definitions/reports"
-                }
-            },
-            "required": [
-                "reports"
-            ]
-        },
-        "reports": {
-            "title": "reports",
-            "type": "object",
-            "properties": {
-                "report": {
-                    "$ref": "#/definitions/report"
-                }
-            },
-            "required": [
-                "report"
-            ]
-        },
-        "report": {
-            "title": "report",
-            "type": "object",
-            "properties": {
-                "name": {
-                    "xml": {
-                        "name": "name",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "compare-template": {
-                    "$ref": "#/definitions/compare-template"
-                }
-            },
-            "required": [
-                "name",
-                "compare-template"
-            ]
-        },
-        "compare-template": {
-            "title": "compare-template",
-            "type": "object",
-            "properties": {
-                "template-name": {
-                    "xml": {
-                        "name": "template-name",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                },
-                "device-group": {
-                    "xml": {
-                        "name": "device-group",
-                        "namespace": "http://tail-f.com/ns/ncs",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "template-name",
-                "device-group"
-            ]
-        },
-        "input2": {
-            "title": "input2",
-            "type": "object",
-            "properties": {
-                "outformat": {
-                    "xml": {
-                        "name": "outformat",
-                        "namespace": "",
-                        "attribute": false,
-                        "wrapped": false
-                    },
-                    "type": "string"
-                }
-            },
-            "required": [
-                "outformat"
-            ]
-        },
-        "CreateServiceInstanceforSingleDeviceRequest": {
-            "title": "CreateServiceInstanceforSingleDeviceRequest",
-            "example": {
-                "svi_verify_example:svi_verify_example": [
-                    {
-                        "name": "first-instance",
-                        "switches": [
-                            {
-                                "id": "first-sw",
-                                "switch-device": "dist-sw01"
-                            },
-                            {
-                                "id": "second-sw",
-                                "switch-device": "dist-sw02"
-                            }
-                        ],
-                        "firewalls": [
-                            {
-                                "id": "first-fw",
-                                "firewall-device": "edge-firewall01"
-                            }
-                        ],
-                        "vlan-id": 1337,
-                        "vlan-name": "SVI-DEMO"
-                    }
-                ]
-            },
-            "type": "object",
-            "properties": {
-                "svi_verify_example:svi_verify_example": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/SviVerifyExampleSviVerifyExample"
-                    }
-                }
-            },
-            "required": [
-                "svi_verify_example:svi_verify_example"
-            ]
-        },
-        "SviVerifyExampleSviVerifyExample": {
-            "title": "SviVerifyExampleSviVerifyExample",
-            "example": {
-                "name": "first-instance",
-                "switches": [
-                    {
-                        "id": "first-sw",
-                        "switch-device": "dist-sw01"
-                    },
-                    {
-                        "id": "second-sw",
-                        "switch-device": "dist-sw02"
-                    }
-                ],
-                "firewalls": [
-                    {
-                        "id": "first-fw",
-                        "firewall-device": "edge-firewall01"
-                    }
-                ],
-                "vlan-id": 1337,
-                "vlan-name": "SVI-DEMO"
-            },
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "switches": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Switch"
-                    }
-                },
-                "firewalls": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Firewall"
-                    }
-                },
-                "vlan-id": {
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "vlan-name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name",
-                "switches",
-                "firewalls",
-                "vlan-id",
-                "vlan-name"
-            ]
-        },
-        "Switch": {
-            "title": "Switch",
-            "example": {
-                "id": "first-sw",
-                "switch-device": "dist-sw01"
-            },
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "switch-device": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "switch-device"
-            ]
-        },
-        "Firewall": {
-            "title": "Firewall",
-            "example": {
-                "id": "first-fw",
-                "firewall-device": "edge-firewall01"
-            },
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "firewall-device": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "firewall-device"
-            ]
-        },
-        "UpdateanExistingServiceInstanceRequest": {
-            "title": "UpdateanExistingServiceInstanceRequest",
-            "example": {
-                "svi_verify_example:svi_verify_example": [
-                    {
-                        "name": "first-instance",
-                        "switches": [
-                            {
-                                "id": "first-sw",
-                                "switch-device": "dist-sw01"
-                            },
-                            {
-                                "id": "second-sw",
-                                "switch-device": "dist-sw02"
-                            }
-                        ],
-                        "firewalls": [
-                            {
-                                "id": "first-fw",
-                                "firewall-device": "edge-firewall01"
-                            }
-                        ],
-                        "vlan-id": 1503,
-                        "vlan-name": "NEW-SVI-DEMO"
-                    }
-                ]
-            },
-            "type": "object",
-            "properties": {
-                "svi_verify_example:svi_verify_example": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/SviVerifyExampleSviVerifyExample"
-                    }
-                }
-            },
-            "required": [
-                "svi_verify_example:svi_verify_example"
-            ]
+          }
         }
+      },
+      "config": {
+        "title": "config",
+        "required": [
+          "snmp-server"
+        ],
+        "type": "object",
+        "properties": {
+          "snmp-server": {
+            "$ref": "#/components/schemas/snmp-server"
+          }
+        },
+        "xml": {
+          "name": "config",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "snmp-server": {
+        "title": "snmp-server",
+        "required": [
+          "community"
+        ],
+        "type": "object",
+        "properties": {
+          "community": {
+            "$ref": "#/components/schemas/community"
+          }
+        },
+        "xml": {
+          "name": "snmp-server",
+          "namespace": "urn:ios",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "community": {
+        "title": "community",
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "urn:ios",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "community",
+          "namespace": "urn:ios",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "devices1": {
+        "title": "devices1",
+        "required": [
+          "template"
+        ],
+        "type": "object",
+        "properties": {
+          "template": {
+            "$ref": "#/components/schemas/template"
+          }
+        },
+        "xml": {
+          "name": "devices",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "template": {
+        "title": "template",
+        "required": [
+          "name",
+          "ned-id"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "ned-id": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ned-id"
+            },
+            "description": "",
+            "xml": {
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "template",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "ned-id": {
+        "title": "ned-id",
+        "required": [
+          "id",
+          "config"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "xml": {
+              "name": "id",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "config": {
+            "$ref": "#/components/schemas/config1"
+          }
+        },
+        "xml": {
+          "name": "ned-id",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "config1": {
+        "title": "config1",
+        "type": "object",
+        "properties": {
+          "domain": {
+            "$ref": "#/components/schemas/domain"
+          },
+          "dns": {
+            "$ref": "#/components/schemas/dns"
+          },
+          "ip": {
+            "$ref": "#/components/schemas/ip4"
+          }
+        },
+        "xml": {
+          "name": "config",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "domain": {
+        "title": "domain",
+        "required": [
+          "name-server"
+        ],
+        "type": "object",
+        "properties": {
+          "name-server": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/name-server"
+            },
+            "description": "",
+            "xml": {
+              "namespace": "http://tail-f.com/ned/cisco-ios-xr",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "domain",
+          "namespace": "http://tail-f.com/ned/cisco-ios-xr",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "name-server": {
+        "title": "name-server",
+        "required": [
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "xml": {
+              "name": "address",
+              "namespace": "http://tail-f.com/ned/cisco-ios-xr",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "name-server",
+          "namespace": "http://tail-f.com/ned/cisco-ios-xr",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "dns": {
+        "title": "dns",
+        "type": "object",
+        "properties": {
+          "domain-lookup": {
+            "$ref": "#/components/schemas/domain-lookup"
+          },
+          "server-group": {
+            "$ref": "#/components/schemas/server-group"
+          }
+        },
+        "xml": {
+          "name": "dns",
+          "namespace": "http://cisco.com/ned/asa",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "domain-lookup": {
+        "title": "domain-lookup",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "http://cisco.com/ned/asa",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "domain-lookup",
+          "namespace": "http://cisco.com/ned/asa",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "server-group": {
+        "title": "server-group",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "http://cisco.com/ned/asa",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "name-server": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "name-server",
+                "attribute": false,
+                "wrapped": false
+              }
+            },
+            "description": "",
+            "xml": {
+              "namespace": "http://cisco.com/ned/asa",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "server-group",
+          "namespace": "http://cisco.com/ned/asa",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "ip4": {
+        "title": "ip4",
+        "type": "object",
+        "properties": {
+          "name-server": {
+            "$ref": "#/components/schemas/name-server1"
+          }
+        },
+        "xml": {
+          "name": "ip",
+          "namespace": "urn:ios",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "name-server1": {
+        "title": "name-server1",
+        "type": "object",
+        "properties": {
+          "name-server-list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/name-server-list"
+            },
+            "description": "",
+            "xml": {
+              "namespace": "urn:ios",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "servers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "xml": {
+                "name": "servers",
+                "attribute": false,
+                "wrapped": false
+              }
+            },
+            "description": "",
+            "xml": {
+              "namespace": "http://tail-f.com/ned/cisco-nx",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "name-server",
+          "namespace": "urn:ios",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "name-server-list": {
+        "title": "name-server-list",
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "xml": {
+              "name": "address",
+              "namespace": "urn:ios",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "name-server-list",
+          "namespace": "urn:ios",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "input": {
+        "title": "input",
+        "required": [
+          "template-name"
+        ],
+        "type": "object",
+        "properties": {
+          "template-name": {
+            "type": "string",
+            "xml": {
+              "name": "template-name",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "input",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "SendanyCommandtoDevice:ShowIPInterfaceBriefRequest": {
+        "title": "SendanyCommandtoDevice:ShowIPInterfaceBriefRequest",
+        "required": [
+          "input"
+        ],
+        "type": "object",
+        "properties": {
+          "input": {
+            "$ref": "#/components/schemas/Input1"
+          }
+        },
+        "example": {
+          "input": {
+            "args": "show ip interface brief"
+          }
+        }
+      },
+      "Input1": {
+        "title": "Input1",
+        "required": [
+          "args"
+        ],
+        "type": "object",
+        "properties": {
+          "args": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "args": "show ip interface brief"
+        }
+      },
+      "compliance": {
+        "title": "compliance",
+        "required": [
+          "reports"
+        ],
+        "type": "object",
+        "properties": {
+          "reports": {
+            "$ref": "#/components/schemas/reports"
+          }
+        },
+        "xml": {
+          "name": "compliance",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "reports": {
+        "title": "reports",
+        "required": [
+          "report"
+        ],
+        "type": "object",
+        "properties": {
+          "report": {
+            "$ref": "#/components/schemas/report"
+          }
+        },
+        "xml": {
+          "name": "reports",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "report": {
+        "title": "report",
+        "required": [
+          "name",
+          "compare-template"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "xml": {
+              "name": "name",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "compare-template": {
+            "$ref": "#/components/schemas/compare-template"
+          }
+        },
+        "xml": {
+          "name": "report",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "compare-template": {
+        "title": "compare-template",
+        "required": [
+          "template-name",
+          "device-group"
+        ],
+        "type": "object",
+        "properties": {
+          "template-name": {
+            "type": "string",
+            "xml": {
+              "name": "template-name",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          },
+          "device-group": {
+            "type": "string",
+            "xml": {
+              "name": "device-group",
+              "namespace": "http://tail-f.com/ns/ncs",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "compare-template",
+          "namespace": "http://tail-f.com/ns/ncs",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "input2": {
+        "title": "input2",
+        "required": [
+          "outformat"
+        ],
+        "type": "object",
+        "properties": {
+          "outformat": {
+            "type": "string",
+            "xml": {
+              "name": "outformat",
+              "namespace": "",
+              "attribute": false,
+              "wrapped": false
+            }
+          }
+        },
+        "xml": {
+          "name": "input",
+          "namespace": "",
+          "attribute": false,
+          "wrapped": false
+        }
+      },
+      "CreateServiceInstanceforSingleDeviceRequest": {
+        "title": "CreateServiceInstanceforSingleDeviceRequest",
+        "required": [
+          "svi_verify_example:svi_verify_example"
+        ],
+        "type": "object",
+        "properties": {
+          "svi_verify_example:svi_verify_example": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SviVerifyExampleSviVerifyExample"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "svi_verify_example:svi_verify_example": [
+            {
+              "name": "first-instance",
+              "switches": [
+                {
+                  "id": "first-sw",
+                  "switch-device": "dist-sw01"
+                },
+                {
+                  "id": "second-sw",
+                  "switch-device": "dist-sw02"
+                }
+              ],
+              "firewalls": [
+                {
+                  "id": "first-fw",
+                  "firewall-device": "edge-firewall01"
+                }
+              ],
+              "vlan-id": 1337,
+              "vlan-name": "SVI-DEMO"
+            }
+          ]
+        }
+      },
+      "SviVerifyExampleSviVerifyExample": {
+        "title": "SviVerifyExampleSviVerifyExample",
+        "required": [
+          "name",
+          "switches",
+          "firewalls",
+          "vlan-id",
+          "vlan-name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "switches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Switch"
+            },
+            "description": ""
+          },
+          "firewalls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Firewall"
+            },
+            "description": ""
+          },
+          "vlan-id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vlan-name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "first-instance",
+          "switches": [
+            {
+              "id": "first-sw",
+              "switch-device": "dist-sw01"
+            },
+            {
+              "id": "second-sw",
+              "switch-device": "dist-sw02"
+            }
+          ],
+          "firewalls": [
+            {
+              "id": "first-fw",
+              "firewall-device": "edge-firewall01"
+            }
+          ],
+          "vlan-id": 1337,
+          "vlan-name": "SVI-DEMO"
+        }
+      },
+      "Switch": {
+        "title": "Switch",
+        "required": [
+          "id",
+          "switch-device"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "switch-device": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "first-sw",
+          "switch-device": "dist-sw01"
+        }
+      },
+      "Firewall": {
+        "title": "Firewall",
+        "required": [
+          "id",
+          "firewall-device"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firewall-device": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "id": "first-fw",
+          "firewall-device": "edge-firewall01"
+        }
+      },
+      "UpdateanExistingServiceInstanceRequest": {
+        "title": "UpdateanExistingServiceInstanceRequest",
+        "required": [
+          "svi_verify_example:svi_verify_example"
+        ],
+        "type": "object",
+        "properties": {
+          "svi_verify_example:svi_verify_example": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SviVerifyExampleSviVerifyExample"
+            },
+            "description": ""
+          }
+        },
+        "example": {
+          "svi_verify_example:svi_verify_example": [
+            {
+              "name": "first-instance",
+              "switches": [
+                {
+                  "id": "first-sw",
+                  "switch-device": "dist-sw01"
+                },
+                {
+                  "id": "second-sw",
+                  "switch-device": "dist-sw02"
+                }
+              ],
+              "firewalls": [
+                {
+                  "id": "first-fw",
+                  "firewall-device": "edge-firewall01"
+                }
+              ],
+              "vlan-id": 1503,
+              "vlan-name": "NEW-SVI-DEMO"
+            }
+          ]
+        }
+      }
     },
-    "security": [
-        {
-            "auth": []
-        }
-    ],
-    "tags": [
-        {
-            "name": "View Device Config",
-            "description": "If device config is very nested, you can use the depth=X parameter to see additional hidden layers of nesting."
-        },
-        {
-            "name": "Adding / Removing a Device",
-            "description": "The production NSO already has all devices added, but you can delete one and re-add it. "
-        },
-        {
-            "name": "NSO Device Groups"
-        },
-        {
-            "name": "Commit Dry-Run and Rollbacks",
-            "description": "Commit dry-run is NSO not making any change to the device, but telling you what the proposed change will be based on what is already existing on the device, calculating the difference. Rollbacks are when NSO calculates the minimum number of commands to return it to the previous state of configuration before the NSO commit transaction. "
-        },
-        {
-            "name": "Device Config Management",
-            "description": "Any element of device configuration modeled in NSO can be configured over the API. The ones given here are just samples. NSO will translate it to the correct commands and can rollback if needed. "
-        },
-        {
-            "name": "Device Config Templates"
-        },
-        {
-            "name": "Operational Data"
-        },
-        {
-            "name": "Config Compliance Reporting"
-        },
-        {
-            "name": "NSO Services: SVI Verify Example",
-            "description": "NSO allows you to create any service, with any inputs, to enforce any config, for any devices. \n\nThe details for the service can be seen on GitHub.\n\nCode for your reference on GitHub:\nhttps://github.com/jabelk/svi_verify_example"
-        },
-        {
-            "name": "NSO Root of the App Hierarchy Level Queries",
-            "description": "Note: Root level queries have different headers than other queries. Return All Application and Device Config."
-        }
-    ]
+    "securitySchemes": {
+      "httpBasic": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBasic": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "View Device Config",
+      "description": "If device config is very nested, you can use the depth=X parameter to see additional hidden layers of nesting."
+    },
+    {
+      "name": "Adding / Removing a Device",
+      "description": "The production NSO already has all devices added, but you can delete one and re-add it. "
+    },
+    {
+      "name": "NSO Device Groups"
+    },
+    {
+      "name": "Commit Dry-Run and Rollbacks",
+      "description": "Commit dry-run is NSO not making any change to the device, but telling you what the proposed change will be based on what is already existing on the device, calculating the difference. Rollbacks are when NSO calculates the minimum number of commands to return it to the previous state of configuration before the NSO commit transaction. "
+    },
+    {
+      "name": "Device Config Management",
+      "description": "Any element of device configuration modeled in NSO can be configured over the API. The ones given here are just samples. NSO will translate it to the correct commands and can rollback if needed. "
+    },
+    {
+      "name": "Device Config Templates"
+    },
+    {
+      "name": "Operational Data"
+    },
+    {
+      "name": "Config Compliance Reporting"
+    },
+    {
+      "name": "NSO Services: SVI Verify Example",
+      "description": "NSO allows you to create any service, with any inputs, to enforce any config, for any devices. \n\nThe details for the service can be seen on GitHub.\n\nCode for your reference on GitHub:\nhttps://github.com/jabelk/svi_verify_example"
+    },
+    {
+      "name": "NSO Root of the App Hierarchy Level Queries",
+      "description": "Note: Root level queries have different headers than other queries. Return All Application and Device Config."
+    }
+  ]
 }
