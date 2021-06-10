@@ -6,12 +6,24 @@
     "contact": {},
     "version": "1.0"
   },
-  "servers": [
-    {
-      "url": "https://sandbox-nso-1.cisco.com",
-      "variables": {}
-    }
-  ],
+    "servers": [
+        {
+            "url": "https://app-nso-sbx-2.devenv-int.ap-ne-1.devnetcloud.com/{basePath}",
+            "variables": {
+                "basePath": {
+                    "default": "restconf"
+                }
+            }
+        },
+        {
+            "url": "https://sandbox-nso-1.cisco.com/{basePath}",
+            "variables": {
+                "basePath":{
+                    "default": "restconf"
+                }
+            }
+        }
+    ],
   "paths": {
     "/data/tailf-ncs:devices/device": {
       "get": {
