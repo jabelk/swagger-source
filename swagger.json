@@ -8,7 +8,7 @@
   },
   "servers": [
     {
-      "url": "https://127.0.0.1:8009/restconf",
+      "url": "https://sandbox-nso-1.cisco.com",
       "variables": {}
     }
   ],
